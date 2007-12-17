@@ -10,7 +10,6 @@ Source1:	%{name}.init.bz2
 Requires(post): rpm-helper
 Requires(preun): rpm-helper
 BuildRequires:	libpcap-devel
-Buildroot:	%{_tmppath}/%{name}-%{version}-root
 
 %description
 DNS Flood Detector was developed to detect abusive usage levels on
