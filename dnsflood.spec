@@ -1,7 +1,7 @@
 Summary:	DNS Flood Detector
 Name:		dnsflood
 Version:	1.12
-Release:	%mkrel 4
+Release:	%mkrel 5
 License:	GPL
 Group:		System/Servers
 URL:		http://www.adotout.com/dnsflood.html
@@ -11,7 +11,7 @@ Source2:	%{name}.sysconfig
 Requires(post): rpm-helper
 Requires(preun): rpm-helper
 BuildRequires:	libpcap-devel
-Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 DNS Flood Detector was developed to detect abusive usage levels on high traffic
