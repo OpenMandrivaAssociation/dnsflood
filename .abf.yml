@@ -1,0 +1,4 @@
+sources:
+  "dnsflood-1.12.tar.bz2:"	b97c8cc49495f3b893c8f5777220c6e0889af92c
+  "dnsflood.init:"	8e550e0e7475474a0f415e347945c75576b23d14
+  "dnsflood.sysconfig:"	1c212c91536120b6c2d78798e3ec12c3ea3de6bd
