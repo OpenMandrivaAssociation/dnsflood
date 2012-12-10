@@ -1,0 +1,70 @@
+#!/bin/sh
+#
+# chkconfig: 345 65 35
+
+### BEGIN INIT INFO
+# Provides: dnsflood
+# Required-Start: $network
+# Requires-Stop: $network
+# Default-Start:  3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: DNS flood detector daemon
+# Description: Start and stop DNS flood detector daemon
+### END INIT INFO
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+# Check that networking is up.
+[ "${NETWORKING}" = "no" ] && exit 0
+
+[ -f /usr/sbin/dns_flood_detector ] || exit 0
+
+[ -f /etc/sysconfig/dns_flood_detector ] && . /etc/sysconfig/dns_flood_detector
+
+RETVAL=0
+
+# See how we were called.
+case "$1" in
+  start)
+	if [ -n "`/sbin/pidof dns_flood_detector`" ]; then
+            echo -n "dns_flood_detector: already running"
+	    RETVAL=$?
+	    echo
+	    exit $RETVAL
+        fi
+	echo -n "Starting dns_flood_detector: "
+	daemon dns_flood_detector -d ${DNS_FLOOD_DETECTOR_OPTIONS:-""}
+	RETVAL=$?
+	[ $RETVAL -eq 0 ] && success || failure
+	echo
+	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/dns_flood_detector
+	;;
+  stop)
+	echo -n "Stopping dns_flood_detector: "
+	killproc dns_flood_detector
+	RETVAL=$?
+	echo
+	[ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/dns_flood_detector
+	;;
+  status)
+	status dns_flood_detector
+	RETVAL=$?
+	;;
+  restart|reload)
+	$0 stop
+	$0 start
+	RETVAL=$?
+	;;
+condrestart)
+	[ -f /var/lock/subsys/dns_flood_detector ] && restart || :
+	;;
+  *)
+	echo "Usage: dns_flood_detector {start|stop|status|restart|condrestart|reload}"
+	exit 1
+esac
+
+exit $RETVAL
