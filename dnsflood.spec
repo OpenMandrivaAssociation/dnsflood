@@ -1,7 +1,7 @@
 Summary:	DNS Flood Detector
 Name:		dnsflood
 Version:	1.12
-Release:	%mkrel 7
+Release:	8
 License:	GPL
 Group:		System/Servers
 URL:		http://www.adotout.com/dnsflood.html
