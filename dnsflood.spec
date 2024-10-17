@@ -4,7 +4,7 @@ Version:	1.12
 Release:	8
 License:	GPL
 Group:		System/Servers
-URL:		http://www.adotout.com/dnsflood.html
+URL:		https://www.adotout.com/dnsflood.html
 Source0:	http://www.adotout.com/%{name}-%{version}.tar.bz2
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
